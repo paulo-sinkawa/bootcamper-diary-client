@@ -2,12 +2,14 @@ import { useState } from "react";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import { Toaster, toast } from "react-hot-toast";
 
 export function Signup() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
+    confirmEmail: "",
     password: "",
     confirmPassword: "",
   });
@@ -39,6 +41,14 @@ export function Signup() {
     e.preventDefault();
 
     try {
+      if ( form.email !== form.confirmEmail || form.password !== form.confirmPassword) {
+        toast.error("Email ou senha não conrrespondem a confirmação");
+        return;
+      }
+      const response = await api.post("/user/signup", form);
+      console.log(response.data);
+      toast.success("Seu cadastro foi efetuado com sucesso !");
+
       const imgURL = await handleUpload();
       await api.post("/user/signup", { ...form, img: imgURL });
 
@@ -50,6 +60,7 @@ export function Signup() {
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div>
         <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
       </div>
@@ -73,6 +84,14 @@ export function Signup() {
           value={form.email}
           onChange={handleChange}
         />
+        <label htmlFor="formConfirmEmail">Confirmação de E-mail:</label>
+        <input
+          id="formConfirmEmail"
+          name="confirmEmail"
+          type="confirmEmail"
+          value={form.confirmEmail}
+          onChange={handleChange}
+        />
         <label htmlFor="formPassword">Senha:</label>
         <input
           id="formPassword"
@@ -87,6 +106,21 @@ export function Signup() {
           type="password"
           name="confirmPassword"
           value={form.confirmPassword}
+          onChange={handleChange}
+        />
+        <label htmlFor="age">Idade</label>
+        <input
+          id="age"
+          type="number"
+          name="age"
+          value={form.age}
+          onChange={handleChange}
+        />
+        <label htmlFor="carrerMigration">Migração de Carreira</label>
+        <input
+          id="carrerMigration"
+          type="Boolean"
+          value={form.carrerMigration}
           onChange={handleChange}
         />
         <button type="submit">Cadastrar</button>

@@ -7,14 +7,19 @@ export function Home() {
       <div>
         <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
       </div>
-      <div>
+      <div className={styles.loginn}>
         <span>
           FAÇA
           <Link to="/login"> LOGIN </Link>
-          ou
-          <Link to="/signup">CADASTRE-SE</Link>
-        </span>
+          OU 
+          <Link to="/signup"> CADASTRE-SE</Link>
+        </span>        
       </div>
+      <div className={styles.divbutton}>
+        <button to="/" className={styles.button1}>
+          CRIE UM POST
+       </button> 
+      </div>     
     </>
   );
 }
