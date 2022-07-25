@@ -12,12 +12,15 @@ export function Signup() {
     confirmEmail: "",
     password: "",
     confirmPassword: "",
+    age: "",
+    carrerMigration: "",
   });
-
+  console.log(form);
   const [img, setImg] = useState("");
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+    console.log(e.target);
   }
 
   function handleImage(e) {
@@ -41,18 +44,23 @@ export function Signup() {
     e.preventDefault();
 
     try {
-      if ( form.email !== form.confirmEmail || form.password !== form.confirmPassword) {
+      if (
+        form.email !== form.confirmEmail ||
+        form.password !== form.confirmPassword
+      ) {
         toast.error("Email ou senha não conrrespondem a confirmação");
         return;
       }
       const response = await api.post("/user/signup", form);
       console.log(response.data);
-      toast.success("Seu cadastro foi efetuado com sucesso !");
-
-      const imgURL = await handleUpload();
-      await api.post("/user/signup", { ...form, img: imgURL });
 
       navigate("/login");
+      toast.success("Seu cadastro foi efetuado com sucesso !");
+
+      // const imgURL = await handleUpload();
+      // await api.post("/user/signup", { ...form, img: imgURL });
+
+      // navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -118,11 +126,21 @@ export function Signup() {
         />
         <label htmlFor="carrerMigration">Migração de Carreira</label>
         <input
-          id="carrerMigration"
-          type="Boolean"
-          value={form.carrerMigration}
+          id="carrerMigrationYes"
+          type="radio"
+          name="carrerMigration"
+          value={true}
           onChange={handleChange}
         />
+        <label htmlFor="carrerMigration">Sim</label>
+        <input
+          id="carrerMigrationNo"
+          type="radio"
+          name="carrerMigration"
+          value={false}
+          onChange={handleChange}
+        />
+        <label htmlFor="carrerMigration">Não</label>
         <button type="submit">Cadastrar</button>
       </form>
     </>

@@ -3,6 +3,7 @@ import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import styles from "./styles.module.css";
+import { Link } from "react-router-dom";
 
 export function Profile() {
   // const [user, setUser] = useState({ name: "", email: "" });
@@ -30,7 +31,8 @@ export function Profile() {
       </div>
       <h1>{loggedInUser.user.name}</h1>
       <p>{loggedInUser.user.email}</p>
-      <button onClick={handleLogOut}>Sair</button>
+      <Link to="/update-profile">EDITAR PERFIL</Link>
+      <button onClick={handleLogOut}>SAIR</button>
     </>
   );
 }

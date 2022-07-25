@@ -16,10 +16,11 @@ export function Home() {
         </span>        
       </div>
       <div className={styles.divbutton}>
-        <button to="/" className={styles.button1}>
+        <button to="/update-profile" className={styles.button1}>
           CRIE UM POST
        </button> 
-      </div>     
+      </div>
+
     </>
   );
 }
