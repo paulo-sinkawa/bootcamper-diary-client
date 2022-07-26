@@ -50,6 +50,16 @@ export function UpdateProfile() {
     }
   }
 
+  async function handleDelete() {
+    try {
+      await api.delete("/user/disable-profile");
+
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -91,6 +101,7 @@ export function UpdateProfile() {
         <label htmlFor="carrerMigration">Não</label>
 
         <button type="submit">SALVAR PERFIL</button>
+        <button onClick={handleDelete}>EXCLUIR PERFIL</button>
       </form>
     </>
   );
