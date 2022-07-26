@@ -96,7 +96,7 @@ export function Signup() {
         <input
           id="formConfirmEmail"
           name="confirmEmail"
-          type="confirmEmail"
+          type="email"
           value={form.confirmEmail}
           onChange={handleChange}
         />

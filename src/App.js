@@ -7,6 +7,8 @@ import { Profile } from "./pages/Profile";
 import { ErrorPage } from "./pages/ErrorPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { UpdateProfile } from "./pages/UpdateProfile";
+import "bootstrap/dist/css/bootstrap.css";
+import { CreatePost } from "./pages/CreatePost";
 
 function App() {
   return (
@@ -23,6 +25,10 @@ function App() {
           <Route
             path="/update-profile"
             element={<ProtectedRoute component={UpdateProfile} />}
+          />
+          <Route
+            path="/create-post"
+            element={<ProtectedRoute component={CreatePost} />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

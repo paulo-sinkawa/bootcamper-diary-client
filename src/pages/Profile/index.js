@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from "react";
-import { api } from "../../api/api";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import styles from "./styles.module.css";
@@ -29,8 +28,10 @@ export function Profile() {
       <div>
         <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
       </div>
-      <h1>{loggedInUser.user.name}</h1>
+      <p>{loggedInUser.user.name}</p>
       <p>{loggedInUser.user.email}</p>
+      <p>Idade: {loggedInUser.user.age}</p>
+      <p>{loggedInUser.user.carrerMigration}</p>
       <Link to="/update-profile">EDITAR PERFIL</Link>
       <button onClick={handleLogOut}>SAIR</button>
     </>
