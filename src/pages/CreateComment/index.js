@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import styles from "./styles.module.css";
 
 export function CreateComment() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     text: "",
   });
+  console.log(form);
 
   const [post, setPost] = useState({});
-  const { id } = useParams();
+  const { postId } = useParams();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,7 +20,7 @@ export function CreateComment() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const response = await api.get(`/post/my-posts/${id}`);
+        const response = await api.get(`/post/my-posts/${postId}`);
         console.log(response.data);
         setPost(response.data);
       } catch (err) {
@@ -31,7 +33,9 @@ export function CreateComment() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await api.post("/comment/create/:postId", form);
+      const response = await api.post(`/comment/create/${postId}`, form);
+      console.log(response);
+      navigate(`/my-posts/${postId}`);
     } catch (err) {
       console.error(err);
     }
@@ -53,14 +57,12 @@ export function CreateComment() {
         <label htmlFor="formComment">Comentário:</label>
         <textarea
           id="formComment"
-          name="comment"
+          name="text"
           type="text"
-          value={form.comment}
+          value={form.text}
           onChange={handleChange}
         />
-        <Link to={`/my-posts/${id}`}>
-          <button type="submit">CRIAR COMENTÁRIO</button>
-        </Link>
+        <button type="submit">CRIAR COMENTÁRIO</button>
       </form>
     </>
   );

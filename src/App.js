@@ -42,7 +42,7 @@ function App() {
             element={<ProtectedRoute component={UpdatePost} />}
           />
           <Route
-            path="/create-comment/:id"
+            path="/create-comment/:postId"
             element={<ProtectedRoute component={CreateComment} />}
           ></Route>
           <Route path="*" element={<ErrorPage />} />
