@@ -62,13 +62,13 @@ export function UpdatePost() {
           onChange={handleChange}
         ></input>
         <label htmlFor="formContent">Conteúdo:</label>
-        <input
+        <textarea
           id="formContent"
           name="content"
           type="text"
           value={form.content}
           onChange={handleChange}
-        ></input>
+        />
         <label htmlFor="formFeeling">Sentimento:</label>
         <select
           id="formFeeling"

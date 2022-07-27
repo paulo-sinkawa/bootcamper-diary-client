@@ -23,12 +23,14 @@ export function MyPosts() {
   console.log(post);
   return (
     <>
-      <div>{post.content}</div>
+      <p>{post.content}</p>
 
       <Link to={`/update-post/${id}`}>
         <button>Editar Post</button>
       </Link>
-      <button>Adicionar Comentario</button>
+      <Link to={`/create-comment/${id}`}>
+        <button>Adicionar Comentario</button>
+      </Link>
     </>
   );
 }

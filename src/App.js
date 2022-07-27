@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { CreatePost } from "./pages/CreatePost";
 import { MyPosts } from "./pages/MyPost";
 import { UpdatePost } from "./pages/UpdatePost";
+import { CreateComment } from "./pages/CreateComment";
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
             path="/update-post/:id"
             element={<ProtectedRoute component={UpdatePost} />}
           />
+          <Route
+            path="/create-comment/:id"
+            element={<ProtectedRoute component={CreateComment} />}
+          ></Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthContextComponent>
