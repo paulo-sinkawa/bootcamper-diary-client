@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "../../api/api";
+import styles from "./styles.module.css";
 
 export function UpdatePost() {
   const { id } = useParams();
@@ -52,6 +53,11 @@ export function UpdatePost() {
 
   return (
     <>
+      <div>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
+      </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="formDate">Data:</label>
         <input

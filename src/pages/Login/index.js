@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/authContext";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import { Link } from "react-router-dom";
 
 export function Login() {
   const [form, setForm] = useState({
@@ -36,7 +37,9 @@ export function Login() {
   return (
     <>
       <div>
-        <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
       </div>
       <form onSubmit={handleSumit}>
         <label>Email:</label>

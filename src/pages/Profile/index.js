@@ -26,7 +26,9 @@ export function Profile() {
   return (
     <>
       <div>
-        <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
       </div>
       <p>{loggedInUser.user.name}</p>
       <p>{loggedInUser.user.email}</p>

@@ -5,7 +5,7 @@ export function Card(props) {
   return (
     <>
       <div>
-        <p>{props.owner.name}</p>
+        <p>{`Nome: ${props.owner}`}</p>
         <p>{`Data: ${props.date}`}</p>
         <p>{`Descrição: ${props.content}`}</p>
         <p>{`Sentimento: ${props.feeling}`}</p>

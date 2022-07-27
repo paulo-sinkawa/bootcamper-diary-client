@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
-import { Card } from "../../components/Cards";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import styles from "./styles.module.css";
 
 export function MyPosts() {
   const [post, setPost] = useState({});
@@ -23,7 +23,15 @@ export function MyPosts() {
   console.log(post);
   return (
     <>
+      <div>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
+      </div>
+      <p>{post.date}</p>
       <p>{post.content}</p>
+      <p>{post.feeling}</p>
+      <p>{post.owner}</p>
 
       <Link to={`/update-post/${id}`}>
         <button>Editar Post</button>

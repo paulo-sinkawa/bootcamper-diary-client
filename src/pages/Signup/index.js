@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Toaster, toast } from "react-hot-toast";
 
@@ -70,7 +71,9 @@ export function Signup() {
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <div>
-        <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="formName">Nome:</label>

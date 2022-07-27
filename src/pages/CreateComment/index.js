@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../../api/api";
+import styles from "./styles.module.css";
 
 export function CreateComment() {
   const [form, setForm] = useState({
     text: "",
   });
+
   const [post, setPost] = useState({});
   const { id } = useParams();
 
@@ -37,8 +39,15 @@ export function CreateComment() {
 
   return (
     <>
-      <div>pagina create-comment funcionando</div>
+      <div>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
+      </div>
+      <p>{post.date}</p>
       <p>{post.content}</p>
+      <p>{post.feeling}</p>
+      <p>{post.owner}</p>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="formComment">Comentário:</label>
@@ -49,7 +58,7 @@ export function CreateComment() {
           value={form.comment}
           onChange={handleChange}
         />
-        <Link to="/">
+        <Link to={`/my-posts/${id}`}>
           <button type="submit">CRIAR COMENTÁRIO</button>
         </Link>
       </form>

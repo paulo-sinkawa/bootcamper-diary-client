@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function CreatePost() {
   const navigate = useNavigate();
@@ -29,7 +30,9 @@ export function CreatePost() {
   return (
     <>
       <div>
-        <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        <Link to="/">
+          <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+        </Link>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="formDate">Data</label>
@@ -64,7 +67,7 @@ export function CreatePost() {
           <option>Frustrado</option>
           <option>Desesperado</option>
         </select>
-        <button type="submit">SALVAR POST</button>
+        <button type="submit">CRIAR POST</button>
       </form>
     </>
   );
