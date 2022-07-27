@@ -1,15 +1,25 @@
-import styles from "./styles.module.css";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "../../api/api";
-import { useState } from "react";
 
-export function CreatePost() {
+export function UpdatePost() {
+  const { id } = useParams();
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     date: "",
     content: "",
     feeling: "",
   });
+
+  useEffect(() => {
+    async function fetchPost() {
+      const response = await api.get(`/post/my-posts/${id}`);
+      console.log(response.data);
+      setForm({ ...response.data });
+    }
+    fetchPost();
+  }, []);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,7 +28,21 @@ export function CreatePost() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await api.post("/post/create", form);
+      const clone = { ...form };
+      delete clone._id;
+      console.log(clone);
+
+      await api.patch(`/post/edit/${id}`, clone);
+
+      navigate(`/my-posts/${id}`);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleDelete() {
+    try {
+      await api.delete(`/post/delete/${id}`);
 
       navigate("/");
     } catch (err) {
@@ -28,27 +52,24 @@ export function CreatePost() {
 
   return (
     <>
-      <div>
-        <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
-      </div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="formDate">Data</label>
+        <label htmlFor="formDate">Data:</label>
         <input
           id="formDate"
           name="date"
           type="text"
           value={form.date}
           onChange={handleChange}
-        />
-        <label htmlFor="formContent">Conteúdo</label>
-        <textarea
+        ></input>
+        <label htmlFor="formContent">Conteúdo:</label>
+        <input
           id="formContent"
           name="content"
           type="text"
           value={form.content}
           onChange={handleChange}
-        />
-        <label htmlFor="formFeeling">Sentimento</label>
+        ></input>
+        <label htmlFor="formFeeling">Sentimento:</label>
         <select
           id="formFeeling"
           name="feeling"
@@ -64,7 +85,13 @@ export function CreatePost() {
           <option>Frustrado</option>
           <option>Desesperado</option>
         </select>
-        <button type="submit">SALVAR POST</button>
+
+        <button type="submit">SALVAR EDIÇÃO</button>
+        <Link to="/">
+          <button onClick={handleDelete}>
+            DELETAR POST E SEUS COMENTÁRIOS
+          </button>
+        </Link>
       </form>
     </>
   );

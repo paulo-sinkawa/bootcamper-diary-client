@@ -9,6 +9,8 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { UpdateProfile } from "./pages/UpdateProfile";
 import "bootstrap/dist/css/bootstrap.css";
 import { CreatePost } from "./pages/CreatePost";
+import { MyPosts } from "./pages/MyPost";
+import { UpdatePost } from "./pages/UpdatePost";
 
 function App() {
   return (
@@ -29,6 +31,14 @@ function App() {
           <Route
             path="/create-post"
             element={<ProtectedRoute component={CreatePost} />}
+          />
+          <Route
+            path="/my-posts/:id"
+            element={<ProtectedRoute component={MyPosts} />}
+          />
+          <Route
+            path="/update-post/:id"
+            element={<ProtectedRoute component={UpdatePost} />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

@@ -10,13 +10,10 @@ export function Home() {
   useEffect(() => {
     async function fetchPost() {
       const response = await api.get("/post/all-posts");
-      console.log(response.data);
       setPost([...response.data]);
     }
     fetchPost();
   }, []);
-
-  console.log(post);
 
   return (
     <>
@@ -38,11 +35,12 @@ export function Home() {
         return (
           <div key={currentPost._id}>
             <Card
-              owner={currentPost.name}
+              owner={currentPost.owner}
               date={currentPost.date}
               content={currentPost.content}
               feeling={currentPost.feeling}
               creationDate={currentPost.creationDate}
+              id={currentPost._id}
             />
           </div>
         );
