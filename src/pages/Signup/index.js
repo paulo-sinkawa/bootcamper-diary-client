@@ -17,6 +17,7 @@ export function Signup() {
     carrerMigration: "",
   });
   console.log(form);
+
   const [img, setImg] = useState("");
 
   function handleChange(e) {
@@ -52,16 +53,16 @@ export function Signup() {
         toast.error("Email ou senha não conrrespondem a confirmação");
         return;
       }
-      const response = await api.post("/user/signup", form);
-      console.log(response.data);
-
-      navigate("/login");
-      toast.success("Seu cadastro foi efetuado com sucesso !");
-
-      // const imgURL = await handleUpload();
-      // await api.post("/user/signup", { ...form, img: imgURL });
+      // const response = await api.post("/user/signup", form);
+      // console.log(response.data);
 
       // navigate("/login");
+      // toast.success("Seu cadastro foi efetuado com sucesso !");
+
+      const imgURL = await handleUpload();
+      await api.post("/user/signup", { ...form, img: imgURL });
+
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }

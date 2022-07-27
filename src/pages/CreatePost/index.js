@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
 
 export function CreatePost() {
   const navigate = useNavigate();
@@ -27,12 +29,22 @@ export function CreatePost() {
     }
   }
 
+  const { loggedInUser } = useContext(AuthContext);
+
+  function handleLogOut() {
+    localStorage.removeItem("loggedInUser");
+    navigate("/");
+  }
+
   return (
     <>
       <div>
         <Link to="/">
           <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
         </Link>
+        <button onClick={handleLogOut} className={styles.buttonLogoff}>
+          SAIR
+        </button>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="formDate">Data</label>

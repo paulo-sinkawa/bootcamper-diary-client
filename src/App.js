@@ -45,6 +45,10 @@ function App() {
             path="/create-comment/:postId"
             element={<ProtectedRoute component={CreateComment} />}
           ></Route>
+          <Route
+            path="/update-comment/:Id"
+            element={<ProtectedRoute component={CreateComment} />}
+          ></Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthContextComponent>

@@ -3,6 +3,8 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { Card } from "../../components/Cards";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 export function Home() {
   const [post, setPost] = useState([]);
@@ -15,6 +17,8 @@ export function Home() {
     }
     fetchPost();
   }, []);
+
+  const { loggedInUser } = useContext(AuthContext);
 
   return (
     <>
@@ -38,7 +42,7 @@ export function Home() {
         return (
           <div key={currentPost._id}>
             <Card
-              owner={currentPost.owner._id}
+              owner={currentPost.owner.name}
               date={currentPost.date}
               content={currentPost.content}
               feeling={currentPost.feeling}

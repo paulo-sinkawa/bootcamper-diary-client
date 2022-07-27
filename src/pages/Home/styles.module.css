@@ -21,10 +21,10 @@
 .button1 {
   display: flex;
   font-size: 15px;
-  background-color: #00188F;
+  background-color: #00188f;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin: 30px;
   height: 50px;
   width: 150px;
 }

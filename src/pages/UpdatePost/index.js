@@ -51,12 +51,20 @@ export function UpdatePost() {
     }
   }
 
+  function handleLogOut() {
+    localStorage.removeItem("loggedInUser");
+    navigate("/");
+  }
+
   return (
     <>
       <div>
         <Link to="/">
           <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
         </Link>
+        <button onClick={handleLogOut} className={styles.buttonLogoff}>
+          SAIR
+        </button>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="formDate">Data:</label>

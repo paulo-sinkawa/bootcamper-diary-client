@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 export function Card(props) {
+  const { loggedInUser } = useContext(AuthContext);
   console.log(props);
   return (
     <>
       <div>
         <p>{`Nome: ${props.owner}`}</p>
+        <img src={loggedInUser.user.img} />
         <p>{`Data: ${props.date}`}</p>
         <p>{`Descrição: ${props.content}`}</p>
         <p>{`Sentimento: ${props.feeling}`}</p>

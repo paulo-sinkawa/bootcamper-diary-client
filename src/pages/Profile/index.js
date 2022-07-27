@@ -23,19 +23,23 @@ export function Profile() {
     navigate("/");
   }
 
+  console.log(loggedInUser);
+
   return (
     <>
       <div>
         <Link to="/">
           <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
+          <button onClick={handleLogOut} className={styles.buttonLogoff}>
+            SAIR
+          </button>
         </Link>
       </div>
-      <p>{loggedInUser.user.name}</p>
-      <p>{loggedInUser.user.email}</p>
+      <p>Nome: {loggedInUser.user.name}</p>
+      <img src={loggedInUser.user.img} />
+      <p>E-mail: {loggedInUser.user.email}</p>
       <p>Idade: {loggedInUser.user.age}</p>
-      <p>{loggedInUser.user.carrerMigration}</p>
       <Link to="/update-profile">EDITAR PERFIL</Link>
-      <button onClick={handleLogOut}>SAIR</button>
     </>
   );
 }

@@ -4,6 +4,8 @@ import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
 
 export function UpdateProfile() {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ export function UpdateProfile() {
   const [form, setForm] = useState({
     name: "",
     age: "",
+    img: "",
     carrerMigration: "",
   });
   console.log(form);
@@ -23,6 +26,19 @@ export function UpdateProfile() {
 
   function handleImage(e) {
     setImg(e.target.files[0]);
+  }
+
+  async function handleUpload() {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/upload-image", uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -62,6 +78,13 @@ export function UpdateProfile() {
     }
   }
 
+  const { loggedInUser } = useContext(AuthContext);
+
+  function handleLogOut() {
+    localStorage.removeItem("loggedInUser");
+    navigate("/");
+  }
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -69,6 +92,9 @@ export function UpdateProfile() {
         <Link to="/">
           <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
         </Link>
+        <button onClick={handleLogOut} className={styles.buttonLogoff}>
+          SAIR
+        </button>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="formName">Nome:</label>
