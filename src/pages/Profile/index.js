@@ -24,7 +24,7 @@ export function Profile() {
         </Link>
       </div>
       <p>Nome: {loggedInUser.user.name}</p>
-      <img src={loggedInUser.user.img} />
+      <img src={loggedInUser.user.img} alt="" />
       <p>E-mail: {loggedInUser.user.email}</p>
       <p>Idade: {loggedInUser.user.age}</p>
       <Link to="/update-profile">EDITAR PERFIL</Link>

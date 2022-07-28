@@ -44,6 +44,7 @@ export function UpdateProfile() {
       try {
         const response = await api.get("/user/profile");
         setForm({ ...response.data });
+        console.log(response);
       } catch (err) {
         console.error(err);
       }

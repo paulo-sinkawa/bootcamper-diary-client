@@ -41,10 +41,7 @@ export function UpdateComment() {
       const clone = { ...comment };
       delete clone._commentId;
 
-      const response = await api.patch(
-        `/comment/edit/${comment.post}/${commentId}`,
-        clone
-      );
+      await api.patch(`/comment/edit/${comment.post}/${commentId}`, clone);
 
       navigate(`/my-posts/${comment.post}`);
     } catch (err) {

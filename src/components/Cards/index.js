@@ -9,7 +9,7 @@ export function Card(props) {
     <>
       <div>
         <p>{`Nome: ${props.owner}`}</p>
-        <img src={loggedInUser.user.img} />
+        <img src={loggedInUser.user.img} alt="" />
         <p>{`Data: ${props.date}`}</p>
         <p>{`Descrição: ${props.content}`}</p>
         <p>{`Sentimento: ${props.feeling}`}</p>
