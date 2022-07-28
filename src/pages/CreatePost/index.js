@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/authContext";
 
 export function CreatePost() {
   const navigate = useNavigate();
@@ -21,15 +19,13 @@ export function CreatePost() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await api.post("/post/create", form);
+      await api.post("/post/create", form);
 
       navigate("/");
     } catch (err) {
       console.error(err);
     }
   }
-
-  const { loggedInUser } = useContext(AuthContext);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");

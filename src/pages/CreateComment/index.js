@@ -26,7 +26,7 @@ export function CreateComment() {
       try {
         const response = await api.get(`/post/my-posts/${postId}`);
 
-        setPost({ ...response.data });
+        setPost(response);
       } catch (err) {
         console.error(err);
       }
@@ -37,7 +37,7 @@ export function CreateComment() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await api.post(`/comment/create/${postId}`, form);
+      await api.post(`/comment/create/${postId}`, form);
 
       navigate(`/my-posts/${postId}`);
     } catch (err) {
