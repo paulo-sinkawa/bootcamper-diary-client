@@ -16,7 +16,7 @@ export function UpdatePost() {
   useEffect(() => {
     async function fetchPost() {
       const response = await api.get(`/post/my-posts/${id}`);
-      console.log(response.data);
+
       setForm({ ...response.data });
     }
     fetchPost();
@@ -31,7 +31,6 @@ export function UpdatePost() {
     try {
       const clone = { ...form };
       delete clone._id;
-      console.log(clone);
 
       await api.patch(`/post/edit/${id}`, clone);
 

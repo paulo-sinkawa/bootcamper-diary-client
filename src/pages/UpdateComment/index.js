@@ -13,13 +13,11 @@ export function UpdateComment() {
 
   const navigate = useNavigate();
 
-  // console.log(commentId, postId);
-
   useEffect(() => {
     async function fetchComment() {
       try {
         const response = await api.get(`/comment/my-comment/${commentId}`);
-        console.log(">>>>>>>>>>>", response.data);
+
         setComment({ ...response.data });
       } catch (err) {
         console.error(err);
@@ -27,7 +25,6 @@ export function UpdateComment() {
     }
     fetchComment();
   }, []);
-  // console.log(comment);
 
   function handleChange(e) {
     setComment({ ...comment, [e.target.name]: e.target.value });
@@ -48,7 +45,7 @@ export function UpdateComment() {
         `/comment/edit/${comment.post}/${commentId}`,
         clone
       );
-      console.log(response);
+
       navigate(`/my-posts/${comment.post}`);
     } catch (err) {
       console.error(err);
@@ -85,7 +82,7 @@ export function UpdateComment() {
           onChange={handleChange}
         />
         <button type="submit">SALVAR COMENTÁRIO</button>
-        <button onClick={handleDelete}>EXCLUIR POST</button>
+        <button onClick={handleDelete}>EXCLUIR COMENTÁRIO</button>
       </form>
     </>
   );

@@ -29,7 +29,6 @@ export function MyPosts() {
     async function fetchPost() {
       try {
         const response = await api.get(`/post/my-posts/${id}`);
-        console.log(response.data);
         setPost(response.data);
       } catch (err) {
         console.error(err);
@@ -37,7 +36,6 @@ export function MyPosts() {
     }
     fetchPost();
   }, []);
-  console.log(post);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
@@ -66,10 +64,10 @@ export function MyPosts() {
       </Link>
 
       <p>Comentários:</p>
-      {post.comment.map((currentPost) => {
+      {post.comment.map((currentPost, i) => {
         return (
-          <div key={currentPost._id}>
-            <div key={currentPost._id}>{currentPost.text}</div>
+          <div key={i}>
+            <p>{currentPost.text}</p>
             <Link to={`/update-comment/${currentPost._id}`}>
               <button>EDITAR COMENTÁRIO</button>
             </Link>

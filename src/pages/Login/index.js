@@ -30,7 +30,7 @@ export function Login() {
 
       navigate("/profile");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

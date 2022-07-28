@@ -8,14 +8,12 @@ export function CreateComment() {
   const [form, setForm] = useState({
     text: "",
   });
-  console.log(form);
 
   const [post, setPost] = useState({
     date: "",
     content: "",
     feeling: "",
   });
-  console.log("xxxxxxx", post);
 
   const { postId } = useParams();
 
@@ -27,7 +25,7 @@ export function CreateComment() {
     async function fetchPost() {
       try {
         const response = await api.get(`/post/my-posts/${postId}`);
-        console.log(">>>>>>>>>>>>", response.data);
+
         setPost({ ...response.data });
       } catch (err) {
         console.error(err);
@@ -40,7 +38,7 @@ export function CreateComment() {
     e.preventDefault();
     try {
       const response = await api.post(`/comment/create/${postId}`, form);
-      console.log(response);
+
       navigate(`/my-posts/${postId}`);
     } catch (err) {
       console.error(err);

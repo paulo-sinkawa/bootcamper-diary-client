@@ -5,25 +5,13 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 
 export function Profile() {
-  // const [user, setUser] = useState({ name: "", email: "" });
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   async function fetchUser() {
-  //     const response = await api.get("/user/profile");
-  //     setUser(response.data);
-  //   }
-
-  //   fetchUser();
-  // }, []);
-
   const { loggedInUser } = useContext(AuthContext);
 
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
     navigate("/");
   }
-
-  console.log(loggedInUser);
 
   return (
     <>

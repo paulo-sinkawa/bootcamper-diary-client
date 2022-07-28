@@ -12,7 +12,7 @@ export function Home() {
   useEffect(() => {
     async function fetchPost() {
       const response = await api.get("/post/all-posts");
-      console.log(...response.data);
+
       setPost([...response.data]);
     }
     fetchPost();

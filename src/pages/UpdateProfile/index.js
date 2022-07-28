@@ -16,7 +16,6 @@ export function UpdateProfile() {
     img: "",
     carrerMigration: "",
   });
-  console.log(form);
 
   const [img, setImg] = useState("");
 
@@ -37,7 +36,7 @@ export function UpdateProfile() {
 
       return response.data.url;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -58,7 +57,6 @@ export function UpdateProfile() {
     try {
       const clone = { ...form };
       delete clone._id;
-      console.log(clone);
 
       await api.patch("/user/update-profile", clone);
 

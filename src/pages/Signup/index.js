@@ -16,13 +16,11 @@ export function Signup() {
     age: "",
     carrerMigration: "",
   });
-  console.log(form);
 
   const [img, setImg] = useState("");
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(e.target);
   }
 
   function handleImage(e) {
@@ -38,7 +36,7 @@ export function Signup() {
 
       return response.data.url;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

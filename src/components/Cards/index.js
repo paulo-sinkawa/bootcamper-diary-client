@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 export function Card(props) {
   const { loggedInUser } = useContext(AuthContext);
-  console.log(props);
+
   return (
     <>
       <div>
