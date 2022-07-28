@@ -12,6 +12,7 @@ import { CreatePost } from "./pages/CreatePost";
 import { MyPosts } from "./pages/MyPost";
 import { UpdatePost } from "./pages/UpdatePost";
 import { CreateComment } from "./pages/CreateComment";
+import { UpdateComment } from "./pages/UpdateComment";
 
 function App() {
   return (
@@ -46,9 +47,10 @@ function App() {
             element={<ProtectedRoute component={CreateComment} />}
           ></Route>
           <Route
-            path="/update-comment/:Id"
-            element={<ProtectedRoute component={CreateComment} />}
+            path="/update-comment/:commentId"
+            element={<ProtectedRoute component={UpdateComment} />}
           ></Route>
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthContextComponent>

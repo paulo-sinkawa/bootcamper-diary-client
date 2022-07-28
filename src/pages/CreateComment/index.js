@@ -10,7 +10,13 @@ export function CreateComment() {
   });
   console.log(form);
 
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({
+    date: "",
+    content: "",
+    feeling: "",
+  });
+  console.log("xxxxxxx", post);
+
   const { postId } = useParams();
 
   function handleChange(e) {
@@ -21,8 +27,8 @@ export function CreateComment() {
     async function fetchPost() {
       try {
         const response = await api.get(`/post/my-posts/${postId}`);
-        console.log(response.data);
-        setPost(response.data);
+        console.log(">>>>>>>>>>>>", response.data);
+        setPost({ ...response.data });
       } catch (err) {
         console.error(err);
       }
@@ -59,7 +65,6 @@ export function CreateComment() {
       <p>{post.date}</p>
       <p>{post.content}</p>
       <p>{post.feeling}</p>
-      <p>{post.owner}</p>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="formComment">Comentário:</label>

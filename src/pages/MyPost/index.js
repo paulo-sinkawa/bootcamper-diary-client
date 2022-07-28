@@ -69,8 +69,8 @@ export function MyPosts() {
       {post.comment.map((currentPost) => {
         return (
           <div key={currentPost._id}>
-            <div>{currentPost.text}</div>
-            <Link to={`/update-comment/${id}`}>
+            <div key={currentPost._id}>{currentPost.text}</div>
+            <Link to={`/update-comment/${currentPost._id}`}>
               <button>EDITAR COMENTÁRIO</button>
             </Link>
           </div>
