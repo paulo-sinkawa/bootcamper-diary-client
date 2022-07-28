@@ -1,11 +1,8 @@
-import { Toaster, toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/authContext";
 
 export function UpdateProfile() {
   const navigate = useNavigate();
@@ -34,6 +31,8 @@ export function UpdateProfile() {
 
       const response = await api.post("/upload-image", uploadData);
 
+      setForm({ ...form, img: response.data });
+
       return response.data.url;
     } catch (error) {
       console.error(error);
@@ -58,7 +57,9 @@ export function UpdateProfile() {
       const clone = { ...form };
       delete clone._id;
 
-      await api.patch("/user/update-profile", clone);
+      const imgURL = await handleUpload();
+
+      await api.patch("/user/update-profile", { clone, img: imgURL });
 
       navigate("/profile");
     } catch (err) {
@@ -76,8 +77,6 @@ export function UpdateProfile() {
     }
   }
 
-  const { loggedInUser } = useContext(AuthContext);
-
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
     navigate("/");
@@ -85,7 +84,6 @@ export function UpdateProfile() {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
       <div>
         <Link to="/">
           <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>
