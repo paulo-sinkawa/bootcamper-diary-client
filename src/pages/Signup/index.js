@@ -37,7 +37,6 @@ export function Signup() {
       return response.data.url;
     } catch (error) {
       console.error(error);
-      toast.error("Preencha todos os campos necessários.");
     }
   }
 
