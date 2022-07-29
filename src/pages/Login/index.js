@@ -4,6 +4,7 @@ import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 export function Login() {
   const [form, setForm] = useState({
@@ -31,11 +32,13 @@ export function Login() {
       navigate("/profile");
     } catch (error) {
       console.error(error);
+      toast.error("Login ou senha incorretos.");
     }
   }
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div>
         <Link to="/">
           <header className={styles.header}>DIÁRIO DO BOOTCAMPER</header>

@@ -36,7 +36,7 @@ export function Home() {
       </div>
       {post.map((currentPost) => {
         return (
-          <div key={currentPost._id}>
+          <div key={currentPost._id} className={styles.form}>
             <Card
               owner={currentPost.owner.name}
               date={currentPost.date}
