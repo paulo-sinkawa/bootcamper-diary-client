@@ -37,6 +37,7 @@ export function Signup() {
       return response.data.url;
     } catch (error) {
       console.error(error);
+      toast.error("Preencha todos os campos necessários.");
     }
   }
 
@@ -51,11 +52,6 @@ export function Signup() {
         toast.error("Email ou senha não conrrespondem a confirmação");
         return;
       }
-      // const response = await api.post("/user/signup", form);
-      // console.log(response.data);
-
-      // navigate("/login");
-      // toast.success("Seu cadastro foi efetuado com sucesso !");
 
       const imgURL = await handleUpload();
       await api.post("/user/signup", { ...form, img: imgURL });
